@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Table</title>
+    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="modal.css">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+        }
+        .Icon{
+            display: none;
+            color: rgb(255, 0, 0);
+            margin-right: 25px;
+            margin-top: 6px;
+        }
+        hr{
+            margin-top: 8px;
+
+        }
+        .modaal {
+            display: none;
+            }
+        .contnt{
+                display: flex;
+        }     
+        .closeBTN{
+            display: flex;
+            justify-content: flex-end;
+        }
+        .modal-close-btn{
+            padding: 3px 5px;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="UpdateModal" class="modaal">
+        <div class="form" id="form-modal">
+            <div class="content">
+                <div class="headings">
+                    <h1>Update</h1>
+                </div>
+                <div class="closeBTN">
+                    <button class="modal-close-btn" onclick="closeModal()">X</button>
+                </div>
+                <hr>
+            </div>
+            <main>
+                <!-- Name -->
+                <div class="Name">
+                    <div class="container">
+                        <div class="modal" id="fnModal" onclick="clickOnModal(fnModal)">
+                            <div class="modalContent">
+                                <span>
+                                    What's your name?
+                                </span>
+                            </div>
+                        </div>
+                        <input 
+                            type="text" 
+                            placeholder="First name" 
+                            id="firstname"
+                        />
+                        <span class="material-symbols-outlined Icon" id="fIcon" onclick="modalFname(firstname)">
+                            error
+                        </span>
+    
+                    </div>
+                    <div class="container">
+                        <input 
+                            type="text" 
+                            placeholder="Surname" 
+                            id="Surname"
+                        />
+                        <span class="material-symbols-outlined Icon" id="SIcon" onclick="modalSname(Surname)">
+                            error
+                        </span>
+                        <div class="modal" id="snModal" onclick="clickOnModal(snModal)">
+                            <div class="modalContent">
+                                <span>
+                                    What's your name?
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Date Of Birth -->
+    
+                <div class="modal details" id="dateDetailModal" onclick="clickOnModal(dateDetailModal)">
+                    <div class="modalContent">
+                        <span>
+                            You can change who sees your gender on your profile later. <br> Select Custom to choose another gender, or if you'd rather not say.
+                        </span>
+                    </div>
+                </div>
+    
+                <label for="day">Date of Birth 
+                    <span class="material-symbols-outlined" onclick="dateDetails()">
+                        shield_question
+                    </span>
+                    <span class="material-symbols-outlined Icon" id="dobIcon" onclick="modalDate()">
+                        error
+                    </span>
+                </label><br>
+                <div class="modal" id="dateModal" onclick="clickOnModal(dateModal)">
+                    <div class="modalContent">
+                        <span>
+                            Enter your Birth Date (You are should be greater than <br> 14 years old or less than 120.)
+                        </span>
+                    </div>
+                </div>
+                <div class="dob">
+                    <div class="container">
+                        <select name="day" id="day">
+                            <option value="" disabled selected>DAY</option>
+                            <script>
+                                for (let i = 1; i <= 31; i++) {
+                                    document.write(`<option value="${i}">${i}</option>`)
+                                }
+                            </script>
+                        </select>
+    
+                    </div>
+                    <div class="container">
+                        <select name="month" id="month">
+                            <option value="" disabled selected>MONTH</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                    <div class="container">
+                        <select name="year" id="year">
+                            <option value="" disabled selected>YEAR</option>
+                            <script>
+                                for (let i = 2024; i >= 1905; i--) {
+                                    document.write(`<option value="${i}">${i}</option>`)
+                                }
+                            </script>
+                        </select>
+                    </div>
+                </div>
+                <!-- Gender -->
+    
+                <div class="modal details" id="genderModal" onclick="clickOnModal(genderModal)">
+                    <div class="modalContent">
+                        <span>
+                            You can change who sees your gender on your profile later.
+                        </span>
+                    </div>
+                </div>
+                <div class="modal" id="genderErrorModal" onclick="clickOnModal(genderErrorModal)">
+                    <div class="modalContent">
+                        <span>
+                            Please Select your prefer Gender...
+                        </span>
+                    </div>
+                </div>
+    
+                <label for="day">Gender 
+                    <span class="material-symbols-outlined" onclick="genderDetails()">
+                        shield_question
+                    </span>
+                    <span class="material-symbols-outlined Icon" id="genderIcon" onclick="modalGender()">
+                        error
+                    </span>
+                </label><br>
+    
+                <div class="gender">
+                    <div id="genderDiv" class="female">
+                        <label for="Female"> Female</label>
+                        <input type="radio" name="gender" id="Female" value="Female">
+                    </div>
+                    <div id="genderDiv" class="Male">
+                        <label for="Male"> Male</label>
+                        <input type="radio" name="gender" id="Male" value="Male">
+                    </div>
+                    <div id="genderDiv" class="Other">
+                        <label for="Custom"> Custom</label>
+                        <input type="radio" name="gender" id="Custom" value="Custom">
+                    </div>
+                </div>
+                
+                <!-- Email -->
+                <div class="modal" id="emailModal" onclick="clickOnModal(emailModal)">
+                    <div class="modalContent">
+                        <span>
+                            Enter your Email !
+                        </span>
+                    </div>
+                </div>
+                <div class="emailorMobile Name">
+                    <div class="container">
+                        <input type="email" id="email" placeholder="Mobile Number or Email" class="credentials">
+                        <span class="material-symbols-outlined Icon" id="EIcon" onclick="modalEmail()">
+                            error
+                        </span>
+                    </div>
+                </div>
+                <div class="modal" id="passModal" onclick="clickOnModal(passModal)">
+                    <div class="modalContent">
+                        <span>
+                            Enter your Password !
+                        </span>
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="password Name">
+                    <div class="container">
+                        <input type="password" id="password" placeholder="New Password" class="credentials">
+                        <span class="material-symbols-outlined Icon" id="PIcon" onclick="modalPass()">
+                            error
+                        </span>
+                    </div>
+                </div>
+                <div class="button">
+                    <button onclick="handleUpdate()">Update</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+
+
+    <div class="navbar">
+        <a href="./index.html">
+            <div class="logo">
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <path d="M32 2C15.4 2 2 15.4 2 32s13.4 30 30 30 30-13.4 30-30S48.6 2 32 2zm0 56C17.2 58 6 46.8 6 32S17.2 6 32 6s26 11.2 26 26-11.2 26-26 26z"/>
+                <circle cx="32" cy="32" r="10"/>
+            </svg>
+            <div class="title">User Management</div>
+            </div>
+        </a>
+        <div class="hamburger" onclick="toggleSidebar()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+        <!-- Back Button in Sidebar -->
+        <button class="back-btn" onclick="toggleSidebar()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="20px" height="20px">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M19 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H19v-2z"/>
+          </svg>
+          Back
+        </button>
+        
+        <ul>
+            <a href="./index.html"><li>Add Users</li></a>
+            <a href="./User.html"><li>All Users</li></a>
+        </ul>
+      </div>
+    
+      <!-- Overlay -->
+      <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <div class="table">
+        <h1 class="heaader">User Data Table</h1>
+
+        <div id="loading" class="spinnner"></div>
+        <div id="Error" class="errror"></div>
+
+        <table id="userTable" style="display:none">
+            <thead>
+                <tr class="headings">
+                    <th>Firstname</th>
+                    <th>Surname</th>
+                    <th>Day</th>
+                    <th>Month</th>
+                    <th>Year</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="userData" class="theadings">
+            </tbody >
+        </table>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('http://localhost:5000/api/getUser')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('userData');
+                const table = document.getElementById('userTable');
+                const loadingSpinner = document.getElementById('loading');
+
+                if (data.length > 0) {
+                    // Hide the spinner and show the table
+                    loadingSpinner.style.display = 'none';
+                    table.style.display = 'table';
+
+                    data.forEach(user => {
+                        const row = document.createElement('tr');
+
+                        row.innerHTML = `
+                            <td>${user.Firstname}</td>
+                            <td>${user.Surname}</td>
+                            <td>${user.DateOfBirth.day}</td>
+                            <td>${user.DateOfBirth.month}</td>
+                            <td>${user.DateOfBirth.year}</td>
+                            <td>${user.gender}</td>
+                            <td>${user.email}</td>
+                            <td>
+                                <span class="material-symbols-outlined Uicon" onclick="updateUser('${user.email}')">
+                                    update
+                                </span>
+                            </td>
+                            <td>
+                                <span class="material-symbols-outlined Dicon" onclick="deleteUser('${user.email}')">
+                                    delete
+                                </span>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    loadingSpinner.textContent = "No users found.";
+                }
+            })
+            .catch(error => {
+                const loadingSpinner = document.getElementById('loading');
+                const Error = document.getElementById('Error');
+                loadingSpinner.style.display = 'none';
+                console.error('Error fetching data:', error);
+                Error.textContent = "Failed to load data.";
+            });
+        });
+    </script>
+    <script src="./user.js"></script>
+</body>
+</html>
